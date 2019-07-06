@@ -1,0 +1,49 @@
+.osrs-background {
+	position: relative;
+	background: #3E3529;
+	border: solid 30px #000;
+	width: 400px;
+	padding: 15px;
+}
+
+.osrs-connector {
+	position: absolute;
+
+	&.vertical {
+		width: 0.75rem;
+
+		&.left {
+			height: 10rem;
+			bottom: 3rem;
+			left: calc(17% - 0.375rem);
+		}
+
+		&.middle {
+			height: 20rem;
+			top: 3rem;
+			left: calc(50% - 0.375rem);
+		}
+
+		&.right {
+			height: 10rem;
+			bottom: 3rem;
+			right: calc(17% - 0.375rem);
+		}
+	}
+
+	&.horizontal {
+		height: 0.75rem;
+
+		&.top {
+			width: 10rem;
+			top: 8rem;
+			left: 5.5rem;
+		}
+
+		&.bottom {
+			width: 15rem;
+			top: 13rem;
+			left: 3rem;
+		}
+	}
+}

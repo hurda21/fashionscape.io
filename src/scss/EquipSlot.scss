@@ -1,0 +1,17 @@
+.equip-slot {
+	margin: 0.1875rem;
+	margin-right: auto;
+	margin-left: auto;
+
+	&:hover {
+		cursor: pointer;
+	}
+
+	&.cape {
+		margin-right: -1.875rem;
+	}
+
+	&.ammo {
+		margin-left: -1.875rem;
+	}
+}
