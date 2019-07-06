@@ -1,5 +1,6 @@
 import React from 'react';
 
+import EquipForm from './EquipForm';
 import EquipLayout from './EquipLayout';
 
 export default class EquipOverview extends React.Component {
@@ -7,7 +8,7 @@ export default class EquipOverview extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			equipment: {
+			selectedEquipment: {
 				head: {},
 				cape: {},
 				neck: {},
@@ -18,15 +19,22 @@ export default class EquipOverview extends React.Component {
 				legs: {},
 				hands: {},
 				feet: {},
-				ring: {},
+				ring: {}
 			}
-		}
+		};
 	}
 
 	render() {
 		return (
-			<div>
-				<EquipLayout equipment={this.state.equipment} />
+			<div className='container'>
+				<div className='row'>
+					<div className='col-md-4'>
+						<EquipForm selectedEquipment={this.state.selectedEquipment} />
+					</div>
+					<div className='col-md-8'>
+						<EquipLayout selectedEquipment={this.state.selectedEquipment} />
+					</div>
+				</div>
 			</div>
 		);
 	}

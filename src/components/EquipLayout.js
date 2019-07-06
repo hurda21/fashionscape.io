@@ -29,8 +29,9 @@ export default class EquipLayout extends React.Component {
 	}
 
 	renderEquipSlots() {
-		let keys = Object.keys(this.props.equipment);
-		let equipment = keys.map((key, index) => {
+		let keys = Object.keys(this.props.selectedEquipment);
+		
+		let equipSlots = keys.map((key, index) => {
 			if (/head|legs/.test(key)) {
 				return (
 					<div className='row'>
@@ -55,13 +56,8 @@ export default class EquipLayout extends React.Component {
 					</div>
 				);
 			}
-			else {
-				return (
-					<div></div>
-				);
-			}
 		});
 
-		return equipment;
+		return equipSlots;
 	}
 }

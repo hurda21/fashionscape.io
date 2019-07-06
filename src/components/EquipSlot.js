@@ -16,13 +16,8 @@ export default class EquipSlot extends React.Component {
 			backgroundImage: 'url(./images/' + this.props.type + '.png)',
 		}
 
-		let className = 'equip-slot';
-		if (/cape|neck|ammo/.test(this.props.type)) {
-			className += ' ' + this.props.type;
-		}
-
 		return (
-			<div className={className} style={equipStyle}></div>
+			<div className={'equip-slot ' + this.props.type} style={equipStyle}></div>
 		);
 	}
 }
