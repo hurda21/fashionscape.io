@@ -1,9 +1,6 @@
 import React from 'react';
 
-export default class ModelViewer extends React.Component {
-	static propTypes = {
-		name: React.PropTypes.string,
-	};
+export default class EquipSlot extends React.Component {
 
 	constructor(props) {
 		super(props);

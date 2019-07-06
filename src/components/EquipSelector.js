@@ -1,10 +1,7 @@
 import React from 'react';
 
-export default class ModelEditor extends React.Component {
-	static propTypes = {
-		name: React.PropTypes.string,
-	};
-
+export default class EquipSelector extends React.Component {
+	
 	constructor(props) {
 		super(props);
 	}
