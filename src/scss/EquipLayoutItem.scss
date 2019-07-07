@@ -1,4 +1,4 @@
-.equip-slot {
+.layout-item {
 	$size: 4.5rem;
 	height: $size;
 	width: $size;
@@ -7,6 +7,7 @@
 	margin-right: auto;
 	margin-left: auto;
 	text-decoration: none;
+	user-select: none;
 
 	&:hover {
 		cursor: pointer;
@@ -22,5 +23,13 @@
 
 	&.selected {
 		outline: 2px solid white;
+	}
+
+	.layout-img {
+		$imgSize: $size - 0.5rem;
+		height: $imgSize;
+		width: $imgSize;
+		margin-top: 0.25rem;
+		margin-left: 0.5em;
 	}
 }

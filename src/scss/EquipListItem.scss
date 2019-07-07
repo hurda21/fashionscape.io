@@ -1,0 +1,25 @@
+$background: #E0D7C8;
+
+.equip-list-item {
+	font-size: 0.9rem;
+	padding: 18px 20px;
+	border-radius: 10px;
+
+	&:hover {
+		cursor: pointer;
+		background-color: darken($background, 5%);
+
+		&:active {
+			background-color: darken($background, 10%);
+		}
+	}
+
+	&.selected {
+		background-color: darken($background, 5%);
+		border: 1.5px solid #615536;
+	}
+}
+
+.overflow-hidden {
+	overflox-x: hidden;
+}

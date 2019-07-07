@@ -34,13 +34,17 @@ export default class EquipOverview extends React.Component {
 
 	render() {
 		return (
-			<div className='container'>
-				<div className='row'>
-					<div className='col-md-4'>
-						<EquipLayout loadout={this.state.loadout} selectedType={this.state.selectedType} selectType={this.selectType} />
+			<div>
+				<div className='container'>
+					<div className='row'>
+						<div className='col-md-4'>
+							<EquipLayout loadout={this.state.loadout} selectedType={this.state.selectedType} selectType={this.selectType} />
+						</div>
 					</div>
 				</div>
-				<EquipSelection equipment={this.state.equipment} selectedType={this.state.selectedType} selectEquip={this.selectEquip} />
+				<div className='container'>
+					<EquipSelection equipment={this.state.equipment} selectedType={this.state.selectedType} selectEquip={this.selectEquip} />
+				</div>
 			</div>
 		);
 	}
@@ -62,8 +66,9 @@ export default class EquipOverview extends React.Component {
 
 	selectEquip = (selectedEquip) => {
 		if (this.state.selectedEquip !== selectedEquip) {
-			this.state.selectedEquip = selectedEquip;
-			console.log(selectedEquip);
+			let loadout = this.state.loadout;
+			loadout[this.state.selectedType] = selectedEquip;
+			this.setState({ loadout: loadout });
 		}
 	};
 }

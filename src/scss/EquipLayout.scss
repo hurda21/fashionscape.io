@@ -6,11 +6,12 @@
 	padding: 15px;
 	margin: auto;
 	text-decoration: none;
+	user-select: none;
 }
 
 .osrs-connector {
-	position: absolute;
 	$size: 0.75rem;
+	position: absolute;
 
 	&.vertical {
 		width: $size;

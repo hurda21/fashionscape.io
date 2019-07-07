@@ -1,7 +1,7 @@
 import React from 'react';
 
 import '../scss/EquipLayout.scss';
-import EquipSlot from './EquipSlot';
+import EquipLayoutItem from './EquipLayoutItem';
 
 export default class EquipLayout extends React.Component {
 
@@ -15,13 +15,18 @@ export default class EquipLayout extends React.Component {
 		let horizontalImage = { backgroundImage: 'url(./images/horizontal-connector.png' };
 
 		return (
-			<div className='osrs-background' style={borderImage}>
-				<span className='osrs-connector vertical left' style={verticalImage}></span>
-				<span className='osrs-connector vertical middle' style={verticalImage}></span>
-				<span className='osrs-connector vertical right' style={verticalImage}></span>
-
-				<span className='osrs-connector horizontal top' style={horizontalImage}></span>
-				<span className='osrs-connector horizontal bottom' style={horizontalImage}></span>
+			<div className='osrs-background' 
+					 style={borderImage}>
+				<span className='osrs-connector vertical left' 
+							style={verticalImage}></span>
+				<span className='osrs-connector vertical middle' 
+							style={verticalImage}></span>
+				<span className='osrs-connector vertical right' 
+							style={verticalImage}></span>
+				<span className='osrs-connector horizontal top' 
+							style={horizontalImage}></span>
+				<span className='osrs-connector horizontal bottom' 
+							style={horizontalImage}></span>
 
 				{this.renderEquipSlots()}
 			</div>
@@ -35,9 +40,13 @@ export default class EquipLayout extends React.Component {
 			let row = '';
 			if (/head|legs/.test(key)) {
 				row = (
-					<div className='row' key={key}>
+					<div className='row' 
+							 key={key}>
 						<div className='col-4 offset-4'>
-							<EquipSlot type={keys[index]} selectedType={this.props.selectedType} selectType={this.props.selectType} />
+							<EquipLayoutItem equip={this.props.loadout[key]} 
+															 type={key} 
+															 selectedType={this.props.selectedType} 
+															 selectType={this.props.selectType} />
 						</div>
 					</div>
 				);
@@ -46,13 +55,22 @@ export default class EquipLayout extends React.Component {
 				row = (
 					<div className='row' key={key}>
 						<div className='col-4'>
-							<EquipSlot type={keys[index]} selectedType={this.props.selectedType} selectType={this.props.selectType} />
+							<EquipLayoutItem equip={this.props.loadout[key]} 
+															 type={key} 
+															 selectedType={this.props.selectedType} 
+															 selectType={this.props.selectType} />
 						</div>
 						<div className='col-4'>
-							<EquipSlot type={keys[index + 1]} selectedType={this.props.selectedType} selectType={this.props.selectType} />
+							<EquipLayoutItem equip={this.props.loadout[keys[index + 1]]} 
+															 type={keys[index + 1]} 
+															 selectedType={this.props.selectedType} 
+															 selectType={this.props.selectType} />
 						</div>
 						<div className='col-4'>
-							<EquipSlot type={keys[index + 2]} selectedType={this.props.selectedType} selectType={this.props.selectType} />
+							<EquipLayoutItem equip={this.props.loadout[keys[index + 2]]} 
+															 type={keys[index + 2]} 
+															 selectedType={this.props.selectedType} 
+															 selectType={this.props.selectType} />
 						</div>
 					</div>
 				);
