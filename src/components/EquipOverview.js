@@ -1,14 +1,17 @@
 import React from 'react';
 
-import EquipForm from './EquipForm';
 import EquipLayout from './EquipLayout';
+import EquipSelection from './EquipSelection';
+
+import axios from 'axios';
+const API_URL = 'https://www.osrsbox.com/osrsbox-db/';
 
 export default class EquipOverview extends React.Component {
 
 	constructor(props) {
 		super(props);
 		this.state = {
-			selectedEquipment: {
+			loadout: {
 				head: {},
 				cape: {},
 				neck: {},
@@ -20,8 +23,13 @@ export default class EquipOverview extends React.Component {
 				hands: {},
 				feet: {},
 				ring: {}
-			}
+			},
+			equipment: {},
+			selectedType: '',
+			selectedEquip: {}
 		};
+
+		this.http = null;
 	}
 
 	render() {
@@ -29,13 +37,33 @@ export default class EquipOverview extends React.Component {
 			<div className='container'>
 				<div className='row'>
 					<div className='col-md-4'>
-						<EquipForm selectedEquipment={this.state.selectedEquipment} />
-					</div>
-					<div className='col-md-8'>
-						<EquipLayout selectedEquipment={this.state.selectedEquipment} />
+						<EquipLayout loadout={this.state.loadout} selectedType={this.state.selectedType} selectType={this.selectType} />
 					</div>
 				</div>
+				<EquipSelection equipment={this.state.equipment} selectedType={this.state.selectedType} selectEquip={this.selectEquip} />
 			</div>
 		);
 	}
+
+	componentDidMount() {
+		this.http = axios.create({
+		  baseURL: API_URL,
+		  timeout: 1000
+		});
+	}
+
+	selectType = (selectedType) => {
+		if (this.state.selectedType !== selectedType) {
+			this.http.get('items-json-slot/items-' + selectedType + '.json').then(response => {
+				this.setState({ equipment: response.data, selectedType: selectedType });
+			});
+		}
+	};
+
+	selectEquip = (selectedEquip) => {
+		if (this.state.selectedEquip !== selectedEquip) {
+			this.state.selectedEquip = selectedEquip;
+			console.log(selectedEquip);
+		}
+	};
 }

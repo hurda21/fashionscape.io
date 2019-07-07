@@ -1,7 +1,12 @@
 .equip-slot {
+	$size: 4.5rem;
+	height: $size;
+	width: $size;
+	background-size: $size;
 	margin: 0.1875rem;
 	margin-right: auto;
 	margin-left: auto;
+	text-decoration: none;
 
 	&:hover {
 		cursor: pointer;
@@ -13,5 +18,9 @@
 
 	&.ammo {
 		margin-left: -1.875rem;
+	}
+
+	&.selected {
+		outline: 2px solid white;
 	}
 }

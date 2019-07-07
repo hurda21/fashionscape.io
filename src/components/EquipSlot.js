@@ -9,15 +9,13 @@ export default class EquipSlot extends React.Component {
 	}
 
 	render() {
-		let equipStyle = {
-			height: '4.5rem',
-			width: '4.5rem',
-			backgroundSize: '4.5rem',
-			backgroundImage: 'url(./images/' + this.props.type + '.png)',
-		}
+		let equipImage = { backgroundImage: 'url(./images/' + this.props.type + '.png)' };
+
+		let className = 'equip-slot ' + this.props.type;
+		if (this.props.selectedType === this.props.type) className += ' selected';
 
 		return (
-			<div className={'equip-slot ' + this.props.type} style={equipStyle}></div>
+			<div className={className} style={equipImage} onClick={() => this.props.selectType(this.props.type)}></div>
 		);
 	}
 }

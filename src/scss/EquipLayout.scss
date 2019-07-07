@@ -5,13 +5,15 @@
 	width: 400px;
 	padding: 15px;
 	margin: auto;
+	text-decoration: none;
 }
 
 .osrs-connector {
 	position: absolute;
+	$size: 0.75rem;
 
 	&.vertical {
-		width: 0.75rem;
+		width: $size;
 
 		&.left {
 			height: 10rem;
@@ -33,7 +35,7 @@
 	}
 
 	&.horizontal {
-		height: 0.75rem;
+		height: $size;
 
 		&.top {
 			width: 10rem;
