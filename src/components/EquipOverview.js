@@ -58,7 +58,7 @@ export default class EquipOverview extends React.Component {
 					</div>
 					<EquipList equipment={this.state.equipment}
 										 selectedEquip={this.state.selectedEquip}
-										 selectEquip={this.state.selectEquip} />
+										 selectEquip={this.selectEquip} />
 					</div>
 			</div>
 		);

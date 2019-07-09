@@ -7,9 +7,8 @@ export default class EquipStats extends React.Component {
 	}
 
 	render() {
-		console.log(this.props);
 		return (
-			<div></div>
+			<div>{this.props.selectedEquip.name}</div>
 		);
 	}
 }
