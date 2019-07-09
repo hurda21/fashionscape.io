@@ -2,7 +2,8 @@ import React from 'react';
 
 import EquipLayout from './EquipLayout';
 import EquipStats from './EquipStats';
-import EquipSelection from './EquipSelection';
+import EquipSearch from './EquipSearch';
+import EquipList from './EquipList';
 
 import axios from 'axios';
 const API_URL = 'https://www.osrsbox.com/osrsbox-db/';
@@ -44,15 +45,21 @@ export default class EquipOverview extends React.Component {
 													 selectType={this.selectType} />
 						</div>
 						<div className='col-lg-6 col-md-4'>
-							<EquipStats loadout={this.state.loadout} />
+							<EquipStats loadout={this.state.loadout} 
+													selectedEquip={this.state.selectedEquip} />
 						</div>
 					</div>
 				</div>
 				<div className='container'>
-					<EquipSelection equipment={this.state.equipment} 
-													selectedEquip={this.state.selectedEquip} 
-													selectEquip={this.selectEquip} />
-				</div>
+					<div className='row'>
+						<div className='col-4 col-offset-4'>
+							<EquipSearch />
+						</div>
+					</div>
+					<EquipList equipment={this.state.equipment}
+										 selectedEquip={this.state.selectedEquip}
+										 selectEquip={this.state.selectEquip} />
+					</div>
 			</div>
 		);
 	}
