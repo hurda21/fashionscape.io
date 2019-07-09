@@ -82,6 +82,17 @@ export default class EquipOverview extends React.Component {
 		if (this.state.selectedEquip !== selectedEquip) {
 			let loadout = this.state.loadout;
 			loadout[this.state.selectedType] = selectedEquip;
+
+			// Removes shield if 2h weapon is selected
+			if (selectedEquip.equipment.slot === '2h') {
+				loadout['shield'] = {};
+			}
+
+			// Removes 2h weapon if shield is selected
+			if (selectedEquip.equipment.slot === 'shield' && loadout['weapon'].equipment.slot === '2h') {
+				loadout['weapon'] = {};
+			}
+
 			this.setState({
 				loadout: loadout,
 				selectedEquip: selectedEquip
