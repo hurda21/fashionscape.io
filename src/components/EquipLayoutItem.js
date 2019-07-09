@@ -12,6 +12,8 @@ export default class EquipLayoutItem extends React.Component {
 
 	render() {
 		let equipImage = { backgroundImage: 'url(./images/' + this.props.type + '.png)' };
+		if (this.props.equip.id !== undefined) equipImage = { backgroundImage: 'url(./images/blank.png)' };
+		
 
 		let className = 'layout-item ' + this.props.type;
 		if (this.props.selectedType === this.props.type) className += ' selected';
@@ -20,12 +22,12 @@ export default class EquipLayoutItem extends React.Component {
 			<div className={className} 
 					 style={equipImage} 
 					 onClick={() => this.props.selectType(this.props.type)}>
-				{this.displayItemImage()}
+				{this.showItem()}
 			</div>
 		);
 	}
 
-	displayItemImage() {
+	showItem() {
 		if (this.props.equip.id !== undefined) {
 			return <img className='layout-img' src={API_URL + 'items-icons/' + this.props.equip.id + '.png'} />
 		}

@@ -66,6 +66,8 @@ export default class EquipOverview extends React.Component {
 				let selectedEquip = this.state.loadout[selectedType];
 				this.setState({ equipment: response.data, selectedType: selectedType, selectedEquip: selectedEquip });
 			});
+		} else {
+			this.setState({ equipment: {}, selectedType: '', selectedEquip: {} })
 		}
 	};
 
