@@ -26,6 +26,24 @@ export default class EquipOverview extends React.Component {
 				feet: {},
 				ring: {}
 			},
+			stats: {
+				attack_crush: 0,
+				attack_magic: 0,
+				attack_ranged: 0,
+				attack_slash: 0,
+				attack_stab: 0,
+				defence_crush: 0,
+				defence_magic: 0,
+				defence_ranged: 0,
+				defence_slash: 0,
+				defence_stab: 0,
+				magic_damage: 0,
+				melee_strength: 0,
+				ranged_strength: 0,
+				magic_damage: 0,
+				prayer: 0
+			},
+			weight: 0,
 			equipment: {},
 			selectedType: '',
 			selectedEquip: {}
@@ -45,7 +63,7 @@ export default class EquipOverview extends React.Component {
 													 selectType={this.selectType} />
 						</div>
 						<div className='col-lg-6 col-md-4'>
-							<EquipStats loadout={this.state.loadout} 
+							<EquipStats stats={this.state.stats} 
 													selectedEquip={this.state.selectedEquip} />
 						</div>
 					</div>
@@ -91,12 +109,15 @@ export default class EquipOverview extends React.Component {
 			loadout[this.state.selectedType] = selectedEquip;
 
 			// Removes shield if 2h weapon is selected
-			if (selectedEquip.equipment.slot === '2h') {
+			if (selectedEquip.equipment !== undefined && selectedEquip.equipment.slot === '2h') {
 				loadout['shield'] = {};
 			}
 
 			// Removes 2h weapon if shield is selected
-			if (selectedEquip.equipment.slot === 'shield' && loadout['weapon'].equipment.slot === '2h') {
+			if (selectedEquip.equipment !== undefined 
+					&& selectedEquip.equipment.slot === 'shield' 
+					&& loadout['weapon'].equipment !== undefined 
+					&& loadout['weapon'].equipment.slot === '2h') {
 				loadout['weapon'] = {};
 			}
 
@@ -104,6 +125,8 @@ export default class EquipOverview extends React.Component {
 				loadout: loadout,
 				selectedEquip: selectedEquip
 			});
+
+			this.setStats();
 		}
 	};
 
@@ -130,6 +153,27 @@ export default class EquipOverview extends React.Component {
 				selectedType: 'weapon',
 				selectedEquip: this.state.loadout['weapon']
 			});
+		});
+	}
+
+	setStats() {
+		let stats = {};
+		let weight = 0;
+
+		Object.keys(this.state.stats).forEach(key => {
+			if (stats[key] === undefined) stats[key] = 0;
+
+			Object.values(this.state.loadout).forEach(value => {
+				if (value && value.equipment) {
+					stats[key] += value.equipment[key];
+					weight += value['weight'];
+				}
+			});
+		});
+
+		this.setState({ 
+			stats: stats, 
+			weight: weight 
 		});
 	}
 }
