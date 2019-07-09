@@ -1,6 +1,7 @@
 import React from 'react';
 
 import EquipLayout from './EquipLayout';
+import EquipStats from './EquipStats';
 import EquipSelection from './EquipSelection';
 
 import axios from 'axios';
@@ -37,10 +38,13 @@ export default class EquipOverview extends React.Component {
 			<div>
 				<div className='container'>
 					<div className='row'>
-						<div className='col-md-4'>
+						<div className='col-lg-6 col-md-8'>
 							<EquipLayout loadout={this.state.loadout} 
 													 selectedType={this.state.selectedType} 
 													 selectType={this.selectType} />
+						</div>
+						<div className='col-lg-6 col-md-4'>
+							<EquipStats loadout={this.state.loadout} />
 						</div>
 					</div>
 				</div>
@@ -62,12 +66,15 @@ export default class EquipOverview extends React.Component {
 
 	selectType = (selectedType) => {
 		if (this.state.selectedType !== selectedType) {
-			this.http.get('items-json-slot/items-' + selectedType + '.json').then(response => {
-				let selectedEquip = this.state.loadout[selectedType];
-				this.setState({ equipment: response.data, selectedType: selectedType, selectedEquip: selectedEquip });
+			if (selectedType === 'weapon') this.getWeapons();
+			else this.getEquipment(selectedType);
+		} 
+		else {
+			this.setState({
+				equipment: {},
+				selectedType: '',
+				selectedEquip: {}
 			});
-		} else {
-			this.setState({ equipment: {}, selectedType: '', selectedEquip: {} })
 		}
 	};
 
@@ -75,7 +82,36 @@ export default class EquipOverview extends React.Component {
 		if (this.state.selectedEquip !== selectedEquip) {
 			let loadout = this.state.loadout;
 			loadout[this.state.selectedType] = selectedEquip;
-			this.setState({ loadout: loadout, selectedEquip: selectedEquip });
+			this.setState({
+				loadout: loadout,
+				selectedEquip: selectedEquip
+			});
 		}
 	};
+
+	// Retrieves all non-weapon equipment
+	getEquipment(selectedType) {
+		this.http.get('items-json-slot/items-' + selectedType + '.json').then(response => {
+			this.setState({ 
+				equipment: response.data,
+				selectedType: selectedType,
+				selectedEquip: this.state.loadout[selectedType]
+			});
+		});
+	}
+
+	// Retrieves both one-handed and two-handed weapons when selecting the 'weapon' equipment type
+	getWeapons() {
+		Promise.all([
+			this.http.get('items-json-slot/items-weapon.json'),
+			this.http.get('items-json-slot/items-2h.json')
+		]).then(response => {
+			let data = { ...response[0].data, ...response[1].data };
+			this.setState({ 
+				equipment: data,
+				selectedType: 'weapon',
+				selectedEquip: this.state.loadout['weapon']
+			});
+		});
+	}
 }
