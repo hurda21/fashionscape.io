@@ -17,7 +17,9 @@ export default class EquipSelection extends React.Component {
 						<EquipSearch />
 					</div>
 				</div>
-				<EquipList equipment={this.props.equipment} selectEquip={this.props.selectEquip} />
+				<EquipList equipment={this.props.equipment}
+									 selectedEquip={this.props.selectedEquip}
+									 selectEquip={this.props.selectEquip} />
 			</div>
 		);
 	}

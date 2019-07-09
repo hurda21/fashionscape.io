@@ -38,12 +38,16 @@ export default class EquipOverview extends React.Component {
 				<div className='container'>
 					<div className='row'>
 						<div className='col-md-4'>
-							<EquipLayout loadout={this.state.loadout} selectedType={this.state.selectedType} selectType={this.selectType} />
+							<EquipLayout loadout={this.state.loadout} 
+													 selectedType={this.state.selectedType} 
+													 selectType={this.selectType} />
 						</div>
 					</div>
 				</div>
 				<div className='container'>
-					<EquipSelection equipment={this.state.equipment} selectedType={this.state.selectedType} selectEquip={this.selectEquip} />
+					<EquipSelection equipment={this.state.equipment} 
+													selectedEquip={this.state.selectedEquip} 
+													selectEquip={this.selectEquip} />
 				</div>
 			</div>
 		);
@@ -59,7 +63,8 @@ export default class EquipOverview extends React.Component {
 	selectType = (selectedType) => {
 		if (this.state.selectedType !== selectedType) {
 			this.http.get('items-json-slot/items-' + selectedType + '.json').then(response => {
-				this.setState({ equipment: response.data, selectedType: selectedType });
+				let selectedEquip = this.state.loadout[selectedType];
+				this.setState({ equipment: response.data, selectedType: selectedType, selectedEquip: selectedEquip });
 			});
 		}
 	};
@@ -68,7 +73,7 @@ export default class EquipOverview extends React.Component {
 		if (this.state.selectedEquip !== selectedEquip) {
 			let loadout = this.state.loadout;
 			loadout[this.state.selectedType] = selectedEquip;
-			this.setState({ loadout: loadout });
+			this.setState({ loadout: loadout, selectedEquip: selectedEquip });
 		}
 	};
 }

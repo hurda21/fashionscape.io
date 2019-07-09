@@ -7,9 +7,6 @@ export default class EquipList extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {
-			viewedEquip: null
-		}
 	}
 
 	render() {
@@ -28,18 +25,13 @@ export default class EquipList extends React.Component {
 		let equipListItems = values.map(value => {
 			return (
 				<div className='col-xl-3 col-lg-4 col-sm-6' key={value.id}>
-					<EquipListItem equipItem={value} 
-												 viewedEquip={this.state.viewedEquip} 
-												 selectEquip={this.props.selectEquip} 
-												 viewEquip={this.viewEquip} />
+					<EquipListItem equip={value}
+												 selectedEquip={this.props.selectedEquip}
+												 selectEquip={this.props.selectEquip} />
 				</div>
 			);
 		});
 
 		return equipListItems;
-	}
-
-	viewEquip = (id) => {
-		this.setState({ viewedEquip: id });
 	}
 }
