@@ -1,9 +1,10 @@
 .layout-item {
 	$size: 4.5rem;
+	$margin: 0.1875rem;
 	height: $size;
 	width: $size;
 	background-size: $size;
-	margin: 0.1875rem;
+	margin: $margin;
 	margin-right: auto;
 	margin-left: auto;
 	text-decoration: none;
@@ -26,10 +27,10 @@
 	}
 
 	.layout-img {
-		$imgSize: $size - 0.75rem;
+		$imgSize: $size - $margin;
 		height: $imgSize;
 		width: $imgSize;
-		margin-top: 0.25rem;
-		margin-left: 0.5em;
+		margin: $margin;
+		padding: $margin;
 	}
 }

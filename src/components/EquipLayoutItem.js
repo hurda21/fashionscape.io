@@ -11,9 +11,9 @@ export default class EquipLayoutItem extends React.Component {
 	}
 
 	render() {
-		let equipImage = { backgroundImage: 'url(./images/' + this.props.type + '.png)' };
-		if (this.props.equip.id !== undefined) equipImage = { backgroundImage: 'url(./images/blank.png)' };
-		
+		let backgroundUrl = 'url(./images/' + this.props.type + '.png)';
+		if (this.props.equip.id !== undefined) backgroundUrl = 'url(./images/blank.png)';
+		let equipImage = { backgroundImage: backgroundUrl };
 
 		let className = 'layout-item ' + this.props.type;
 		if (this.props.selectedType === this.props.type) className += ' selected';

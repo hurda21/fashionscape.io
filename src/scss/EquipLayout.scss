@@ -46,7 +46,7 @@
 
 		&.bottom {
 			width: 15rem;
-			top: 13rem;
+			top: calc(50% - 0.375rem);
 			left: 3rem;
 		}
 	}
