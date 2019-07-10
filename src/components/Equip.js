@@ -51,8 +51,9 @@ export default class Equip extends React.Component {
 			selectedEquip: {},
 			selectedType: '',
 
-			searchInput: '',
-			equipment: {}
+			equipment: {},
+			searchInput: ''
+			
 		};
 
 		this.http = null;
