@@ -3,6 +3,7 @@ import React from 'react';
 import '../scss/Equip.scss';
 
 import EquipLayout from './EquipLayout';
+import EquipModel from './EquipModel';
 import EquipStats from './EquipStats';
 import EquipSelectedStats from './EquipSelectedStats';
 import EquipSearch from './EquipSearch';
@@ -59,12 +60,15 @@ export default class EquipOverview extends React.Component {
 		return (
 			<div className='container equip-card'>
 				<div className='row'>
-					<div className='col-lg-6 col-md-8'>
+					<div className='col-lg-5 col-md-8'>
 						<EquipLayout loadout={this.state.loadout} 
 												 selectedType={this.state.selectedType} 
 												 selectType={this.selectType} />
 					</div>
-					<div className='col-lg-6 col-md-4'>
+					<div className='col-lg-4 d-none d-lg-block d-xl-block'>
+						<EquipModel />
+					</div>
+					<div className='col-lg-3 col-md-4'>
 						<EquipStats stats={this.state.stats} />
 					</div>
 				</div>
