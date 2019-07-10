@@ -5,7 +5,6 @@ import '../scss/Equip.scss';
 import EquipLayout from './EquipLayout';
 import EquipModel from './EquipModel';
 import EquipStats from './EquipStats';
-import EquipSelectedStats from './EquipSelectedStats';
 import EquipSearch from './EquipSearch';
 import EquipList from './EquipList';
 
@@ -134,8 +133,9 @@ export default class Equip extends React.Component {
 	};
 
 	selectEquip = (selectedEquip) => {
-		if (this.state.selectedEquip !== selectedEquip) {
-			let loadout = this.state.loadout;
+		let loadout = this.state.loadout;
+
+		if (this.state.selectedEquip.id !== selectedEquip.id) {
 			loadout[this.state.selectedType] = selectedEquip;
 
 			// Removes shield if 2h weapon is selected
@@ -155,9 +155,17 @@ export default class Equip extends React.Component {
 				loadout: loadout,
 				selectedEquip: selectedEquip
 			});
+		} else {
+			loadout[this.state.selectedType] = {};
 
-			this.setStats();
+			this.setState({
+				loadout: loadout,
+				selectedEquip: {}
+			});
 		}
+
+		// Sets the equipment stats after equipping an item
+		this.setEquipStats();
 	};
 
 	setSearchInput = (e) => {
@@ -190,7 +198,7 @@ export default class Equip extends React.Component {
 		});
 	}
 
-	setStats() {
+	setEquipStats() {
 		let stats = {};
 		let weight = 0;
 

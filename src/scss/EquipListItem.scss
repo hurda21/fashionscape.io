@@ -3,6 +3,8 @@ $background: #E0D7C8;
 .equip-list-item {
 	padding: 20px;
 	border-radius: 10px;
+	max-height: 5rem;
+	transition: max-height 0.25s ease-in;
 
 	&:hover {
 		cursor: pointer;
@@ -13,12 +15,20 @@ $background: #E0D7C8;
 		}
 	}
 
+	.equip-details {
+		visibility: hidden;
+		font-size: 0.6rem;
+		margin-top: 1rem;
+	}
+
 	&.selected {
 		background-color: darken($background, 10%);
-		border: 1.5px solid #615536;
-	}
-}
+		border: 1px solid #615536;
+		max-height: 14rem;
 
-.overflow-hidden {
-	overflox-x: hidden;
+		.equip-details {
+			visibility: visible;
+			transition: visibility 0s linear 0.15s;
+		}
+	}
 }

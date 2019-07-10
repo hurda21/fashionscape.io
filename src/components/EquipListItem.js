@@ -1,5 +1,6 @@
 import React from 'react';
 
+import '../scss/Equip.scss';
 import '../scss/EquipListItem.scss';
 
 const API_URL = 'https://www.osrsbox.com/osrsbox-db/';
@@ -11,15 +12,45 @@ export default class EquipListItem extends React.Component {
 	}
 
 	render() {
+		let equip = this.props.equip;
 		let className = 'equip-list-item';
-		if (this.props.selectedEquip.id === this.props.equip.id) className += ' selected';
-
+		if (this.props.selectedEquip.id === equip.id) className += ' selected';
+		
 		return (
 			<div className={className} 
-					 onClick={() => this.props.selectEquip(this.props.equip)}>
-				<img src={API_URL + 'items-icons/' + this.props.equip.id + '.png'} />
-				<span className='overflow-hidden'>{this.props.equip.name}</span>
+					 onClick={() => this.props.selectEquip(equip)}>
+				<img src={API_URL + 'items-icons/' + equip.id + '.png'} />
+				<span>{this.props.equip.name}</span>
+				<div className='equip-details'>
+					<hr/>
+					<div className='row'>
+						<div className='offset-1 col-5'>
+							<h6 className='tiny-header'>Attack</h6>
+							<div>Stab: {this.renderBonus(equip.equipment.attack_stab)}</div>
+							<div>Slash: {this.renderBonus(equip.equipment.attack_slash)}</div>
+							<div>Crush: {this.renderBonus(equip.equipment.attack_crush)}</div>
+							<div>Magic: {this.renderBonus(equip.equipment.attack_magic)}</div>
+							<div>Range: {this.renderBonus(equip.equipment.attack_ranged)}</div>
+						</div>
+						<div className='col-5'>
+							<h6 className='tiny-header'>Defence</h6>
+							<div>Stab: {this.renderBonus(equip.equipment.defence_stab)}</div>
+							<div>Slash: {this.renderBonus(equip.equipment.defence_slash)}</div>
+							<div>Crush: {this.renderBonus(equip.equipment.defence_crush)}</div>
+							<div>Magic: {this.renderBonus(equip.equipment.defence_magic)}</div>
+							<div>Range: {this.renderBonus(equip.equipment.defence_ranged)}</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		);
+	}
+
+	renderBonus(equipStat) {
+		if (equipStat >= 0) {
+			return "+" + equipStat;
+		} else {
+			return equipStat;
+		}
 	}
 }

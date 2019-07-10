@@ -11,8 +11,12 @@ $background: #E0D7C8;
 	user-select: none;
 }
 
-h6, .small-header {
+h6.small-header {
 	font-size: 0.9rem;
+}
+
+h6.tiny-header {
+	font-size: 0.7rem;
 }
 
 .underlined {
