@@ -12,7 +12,7 @@ import EquipList from './EquipList';
 import axios from 'axios';
 const API_URL = 'https://www.osrsbox.com/osrsbox-db/';
 
-export default class EquipOverview extends React.Component {
+export default class Equip extends React.Component {
 
 	constructor(props) {
 		super(props);
@@ -83,12 +83,13 @@ export default class EquipOverview extends React.Component {
 	renderEquipList() {
 		// Filters the equipment list based on search parameters
 		let equipment = this.state.equipment;
+		let searchInput = this.state.searchInput.replace(/\\/g, '').trim().toLowerCase();
 
-		if (this.state.searchInput.length > 0 && equipment !== undefined) {
+		if (searchInput.length > 0 && equipment !== undefined) {
 			equipment = {};
 
 			let filteredValues = Object.values(this.state.equipment).filter(equip => {
-				return equip.name.toLowerCase().match(this.state.searchInput);
+				return equip.name.toLowerCase().match(searchInput);
 			});
 			filteredValues.forEach(equip => {
 				equipment[equip.id] = equip;

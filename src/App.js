@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.scss';
 
-import EquipOverview from './components/EquipOverview';
+import Equip from './components/Equip';
 
 function App() {
   return (
     <div className="App">
-      <EquipOverview />
+      <Equip />
     </div>
   );
 }
