@@ -71,7 +71,8 @@ export default class Equip extends React.Component {
 						<EquipModel />
 					</div>
 					<div className='col-lg-3 col-md-4'>
-						<EquipStats stats={this.state.stats} />
+						<EquipStats stats={this.state.stats}
+												weight={this.state.weight} />
 					</div>
 				</div>
 				{this.renderEquipList()}
@@ -202,14 +203,12 @@ export default class Equip extends React.Component {
 		let stats = {};
 		let weight = 0;
 
-		Object.keys(this.state.stats).forEach(key => {
-			if (stats[key] === undefined) stats[key] = 0;
+		Object.values(this.state.loadout).forEach(equip => {
+			if (equip && equip.weight) weight += equip.weight;
 
-			Object.values(this.state.loadout).forEach(value => {
-				if (value && value.equipment) {
-					stats[key] += value.equipment[key];
-					weight += value['weight'];
-				}
+			Object.keys(this.state.stats).forEach(key => {
+				if (stats[key] === undefined) stats[key] = 0;
+				if (equip && equip.equipment) stats[key] += equip.equipment[key];
 			});
 		});
 
