@@ -12,10 +12,12 @@ export default class EquipSearch extends React.Component {
 		return (
 			<div className='row'>
 				<div className='offset-lg-4 col-lg-4 offset-md-3 col-md-6 offset-sm-2 col-sm-8'>
-					<input className='form-control equip-search' 
-								 type='text' 
-								 placeholder='Search' 
-								 aria-label='Search' />
+					<input className='form-control equip-search'
+								 type='text'
+								 value={this.props.searchInput}
+								 placeholder='Search'
+								 aria-label='Search'
+								 onChange={this.props.setSearchInput} />
 				</div>
 			</div>
 		);

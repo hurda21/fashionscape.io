@@ -48,9 +48,12 @@ export default class EquipOverview extends React.Component {
 				prayer: 0
 			},
 			weight: 0,
-			equipment: {},
+
+			selectedEquip: {},
 			selectedType: '',
-			selectedEquip: {}
+
+			searchInput: '',
+			equipment: {}
 		};
 
 		this.http = null;
@@ -78,12 +81,28 @@ export default class EquipOverview extends React.Component {
 	}
 
 	renderEquipList() {
+		// Filters the equipment list based on search parameters
+		let equipment = this.state.equipment;
+
+		if (this.state.searchInput.length > 0 && equipment !== undefined) {
+			equipment = {};
+
+			let filteredValues = Object.values(this.state.equipment).filter(equip => {
+				return equip.name.toLowerCase().match(this.state.searchInput);
+			});
+			filteredValues.forEach(equip => {
+				equipment[equip.id] = equip;
+			});
+		}
+
 		if (this.state.selectedType !== '') {
 			return (
 				<div>
 					<hr className='underlined' />
-					<EquipSearch />
-					<EquipList equipment={this.state.equipment}
+					<EquipSearch equipment={this.state.equipment} 
+											 searchInput={this.state.searchInput}
+											 setSearchInput={this.setSearchInput} />
+					<EquipList equipment={equipment}
 										 selectedEquip={this.state.selectedEquip}
 										 selectEquip={this.selectEquip} />
 				</div>
@@ -138,6 +157,10 @@ export default class EquipOverview extends React.Component {
 			this.setStats();
 		}
 	};
+
+	setSearchInput = (e) => {
+		this.setState({ searchInput: e.target.value });
+	}
 
 	// Retrieves all non-weapon equipment
 	getEquipment(selectedType) {
