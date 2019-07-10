@@ -1,6 +1,7 @@
 import React from 'react';
 
 import '../scss/EquipList.scss';
+import '../scss/EquipListItem.scss';
 import EquipListItem from './EquipListItem';
 
 export default class EquipList extends React.Component {
@@ -18,9 +19,17 @@ export default class EquipList extends React.Component {
 	}
 
 	renderEquipListItems() {
-		let values = Object.values(this.props.equipment);
+		if (Object.keys(this.props.equipment).length === 0) {
+			return (
+				<div className='col-12'>
+					<div className='equip-list-item text-center'>
+						<h6 className='small-header'>No equipment found for: "{this.props.searchInput}"</h6>
+					</div>
+				</div>
+			);
+		}
 
-		let equipListItems = values.map(value => {
+		let equipListItems = Object.values(this.props.equipment).map(value => {
 			return (
 				<div className='col-xl-3 col-lg-4 col-sm-6' key={value.id}>
 					<EquipListItem equip={value}

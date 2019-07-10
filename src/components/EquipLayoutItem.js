@@ -12,7 +12,7 @@ export default class EquipLayoutItem extends React.Component {
 
 	render() {
 		let backgroundUrl = 'url(./images/' + this.props.type + '.png)';
-		if (this.props.equip.id !== undefined) backgroundUrl = 'url(./images/blank.png)';
+		if (Object.keys(this.props.equip).length > 0) backgroundUrl = 'url(./images/blank.png)';
 		let equipImage = { backgroundImage: backgroundUrl };
 
 		let className = 'layout-item ' + this.props.type;
@@ -28,7 +28,7 @@ export default class EquipLayoutItem extends React.Component {
 	}
 
 	showItem() {
-		if (this.props.equip.id !== undefined) {
+		if (Object.keys(this.props.equip).length > 0) {
 			return <img className='layout-img' src={API_URL + 'items-icons/' + this.props.equip.id + '.png'} />
 		}
 	}

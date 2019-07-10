@@ -85,7 +85,7 @@ export default class Equip extends React.Component {
 		let equipment = this.state.equipment;
 		let searchInput = this.state.searchInput.replace(/\\/g, '').trim().toLowerCase();
 
-		if (searchInput.length > 0 && equipment !== undefined) {
+		if (searchInput.length > 0 && Object.keys(equipment).length > 0) {
 			equipment = {};
 
 			let filteredValues = Object.values(this.state.equipment).filter(equip => {
@@ -104,6 +104,7 @@ export default class Equip extends React.Component {
 											 searchInput={this.state.searchInput}
 											 setSearchInput={this.setSearchInput} />
 					<EquipList equipment={equipment}
+										 searchInput={this.state.searchInput}
 										 selectedEquip={this.state.selectedEquip}
 										 selectEquip={this.selectEquip} />
 				</div>
