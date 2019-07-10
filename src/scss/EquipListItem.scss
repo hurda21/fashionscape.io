@@ -2,20 +2,20 @@ $background: #E0D7C8;
 
 .equip-list-item {
 	font-size: 0.9rem;
-	padding: 18px 20px;
+	padding: 20px;
 	border-radius: 10px;
 
 	&:hover {
 		cursor: pointer;
-		background-color: darken($background, 5%);
+		background-color: darken($background, 10%);
 
 		&:active {
-			background-color: darken($background, 10%);
+			background-color: darken($background, 15%);
 		}
 	}
 
 	&.selected {
-		background-color: darken($background, 5%);
+		background-color: darken($background, 10%);
 		border: 1.5px solid #615536;
 	}
 }

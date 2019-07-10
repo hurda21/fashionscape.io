@@ -11,10 +11,8 @@ export default class EquipList extends React.Component {
 
 	render() {
 		return (
-			<div className='equip-list'>
-				<div className='row'>
-					{this.renderEquipListItems()}
-				</div>
+			<div className='row equip-list'>
+				{this.renderEquipListItems()}
 			</div>
 		);
 	}

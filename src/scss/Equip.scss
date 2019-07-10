@@ -1,0 +1,15 @@
+$background: #E0D7C8;
+
+.equip-card {
+	background-color: $background;
+	border-radius: 10px;
+	box-shadow: 0px 3px 6px rgba(0, 0, 0, .25);
+	padding: 40px 20px;
+	text-decoration: none;
+	user-select: none;
+}
+
+.underlined {
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+}

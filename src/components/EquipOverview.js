@@ -1,7 +1,10 @@
 import React from 'react';
 
+import '../scss/Equip.scss';
+
 import EquipLayout from './EquipLayout';
 import EquipStats from './EquipStats';
+import EquipSelectedStats from './EquipSelectedStats';
 import EquipSearch from './EquipSearch';
 import EquipList from './EquipList';
 
@@ -54,32 +57,34 @@ export default class EquipOverview extends React.Component {
 
 	render() {
 		return (
-			<div>
-				<div className='container'>
-					<div className='row'>
-						<div className='col-lg-6 col-md-8'>
-							<EquipLayout loadout={this.state.loadout} 
-													 selectedType={this.state.selectedType} 
-													 selectType={this.selectType} />
-						</div>
-						<div className='col-lg-6 col-md-4'>
-							<EquipStats stats={this.state.stats} 
-													selectedEquip={this.state.selectedEquip} />
-						</div>
+			<div className='container equip-card'>
+				<div className='row'>
+					<div className='col-lg-6 col-md-8'>
+						<EquipLayout loadout={this.state.loadout} 
+												 selectedType={this.state.selectedType} 
+												 selectType={this.selectType} />
+					</div>
+					<div className='col-lg-6 col-md-4'>
+						<EquipStats stats={this.state.stats} />
 					</div>
 				</div>
-				<div className='container'>
-					<div className='row'>
-						<div className='col-4 col-offset-4'>
-							<EquipSearch />
-						</div>
-					</div>
+				{this.renderEquipList()}
+			</div>
+		);
+	}
+
+	renderEquipList() {
+		if (this.state.selectedType !== '') {
+			return (
+				<div>
+					<hr className='underlined' />
+					<EquipSearch />
 					<EquipList equipment={this.state.equipment}
 										 selectedEquip={this.state.selectedEquip}
 										 selectEquip={this.selectEquip} />
-					</div>
-			</div>
-		);
+				</div>
+			);
+		}
 	}
 
 	componentDidMount() {

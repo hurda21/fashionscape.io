@@ -15,20 +15,22 @@ export default class EquipLayout extends React.Component {
 		let horizontalImage = { backgroundImage: 'url(./images/horizontal-connector.png' };
 
 		return (
-			<div className='osrs-background' 
-					 style={borderImage}>
-				<span className='osrs-connector vertical left' 
-							style={verticalImage}></span>
-				<span className='osrs-connector vertical middle' 
-							style={verticalImage}></span>
-				<span className='osrs-connector vertical right' 
-							style={verticalImage}></span>
-				<span className='osrs-connector horizontal top' 
-							style={horizontalImage}></span>
-				<span className='osrs-connector horizontal bottom' 
-							style={horizontalImage}></span>
+			<div className='row'>
+				<div className='osrs-background' 
+						 style={borderImage}>
+					<span className='osrs-connector vertical left' 
+								style={verticalImage}></span>
+					<span className='osrs-connector vertical middle' 
+								style={verticalImage}></span>
+					<span className='osrs-connector vertical right' 
+								style={verticalImage}></span>
+					<span className='osrs-connector horizontal top' 
+								style={horizontalImage}></span>
+					<span className='osrs-connector horizontal bottom' 
+								style={horizontalImage}></span>
 
-				{this.renderEquipSlots()}
+					{this.renderEquipSlots()}
+				</div>
 			</div>
 		);
 	}
