@@ -12,7 +12,7 @@ export default class EquipStats extends React.Component {
 	render() {
 		let stats = this.props.stats;
 		return (
-			<div className='padded no-bottom-padded'>
+			<div className='equip-stats-container'>
 				<div className='row'>
 					<div className='col-xl-4 col-sm-4'>
 						<h6 className='small-header'>Attack:</h6>
