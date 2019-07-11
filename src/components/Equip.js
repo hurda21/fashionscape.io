@@ -15,6 +15,7 @@ export default class Equip extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			// Player's equipment loadout
 			loadout: {
 				head: {},
 				cape: {},
@@ -28,6 +29,8 @@ export default class Equip extends React.Component {
 				feet: {},
 				ring: {}
 			},
+
+			// Total stats of the player's loadout
 			totalStats: {
 				attack_crush: 0,
 				attack_magic: 0,
@@ -47,10 +50,16 @@ export default class Equip extends React.Component {
 			},
 			totalWeight: 0,
 
+			// Selected equipment item
 			selectedEquip: {},
+
+			// Selected equipment type
 			selectedType: '',
 
+			// All equipment available of the selected type
 			equipment: [],
+
+			// Search input for equipment
 			searchInput: ''
 			
 		};
@@ -154,7 +163,7 @@ export default class Equip extends React.Component {
 		this.setState({ searchInput: e.target.value });
 	}
 
-	// Retrieves all equipment
+	// Retrieves all equipment through the osrsbox API
 	getEquipment(selectedType) {
 		let data = {};
 		if (selectedType !== 'weapon') {
@@ -163,7 +172,8 @@ export default class Equip extends React.Component {
 				this.setState({ 
 					equipment: data,
 					selectedType: selectedType,
-					selectedEquip: this.state.loadout[selectedType]
+					selectedEquip: this.state.loadout[selectedType],
+					searchInput: ''
 				});
 			});
 		} else {
@@ -175,7 +185,8 @@ export default class Equip extends React.Component {
 				this.setState({ 
 					equipment: data,
 					selectedType: selectedType,
-					selectedEquip: this.state.loadout[selectedType]
+					selectedEquip: this.state.loadout[selectedType],
+					searchInput: ''
 				});
 			});
 		}
