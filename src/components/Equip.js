@@ -178,6 +178,7 @@ export default class Equip extends React.Component {
 	}
 
 	// Retrieves both one-handed and two-handed weapons when selecting the 'weapon' equipment type
+	// *** NEEDS OPTIMIZATION ***
 	getWeapons() {
 		Promise.all([
 			this.http.get('items-json-slot/items-weapon.json'),
