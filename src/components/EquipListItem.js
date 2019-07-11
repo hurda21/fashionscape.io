@@ -20,7 +20,7 @@ export default class EquipListItem extends React.Component {
 			<div className={className} 
 					 onClick={() => this.props.selectEquip(equip)}>
 				<img src={API_URL + 'items-icons/' + equip.id + '.png'} />
-				<span>{this.props.equip.name}</span>
+				<span className='margin-left'>{this.props.equip.name}</span>
 				<div className='equip-details'>
 					<hr/>
 					<div className='row'>
