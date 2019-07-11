@@ -80,16 +80,12 @@ export default class Equip extends React.Component {
 
 	renderEquipList() {
 		// Filters the equipment list based on search parameters
-		let equipment = this.state.equipment;
+		let equipment = Object.values(this.state.equipment);
 		let searchInput = this.state.searchInput.replace(/\\/g, '').trim().toLowerCase();
 
-		if (searchInput.length > 0 && Object.keys(equipment).length > 0) {
-			equipment = {};
-
-			let filteredValues = Object.values(this.state.equipment).forEach(equip => {
-				if (equip.name.toLowerCase().match(searchInput)) {
-					equipment[equip.id] = equip;
-				}
+		if (searchInput.length > 0) {
+			equipment = equipment.filter(equip => {
+				if (equip && equip.name) return equip.name.toLowerCase().match(searchInput);
 			});
 		}
 
