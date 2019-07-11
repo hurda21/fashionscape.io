@@ -2,7 +2,7 @@ $background: #E0D7C8;
 
 .equip-list-item {
 	padding: 20px;
-	border-radius: 10px;
+	border-radius: 20px;
 	max-height: 5rem;
 	transition: max-height 0.25s ease-in;
 
@@ -16,9 +16,11 @@ $background: #E0D7C8;
 	}
 
 	.equip-details {
+		position: absolute;
+		top: -9999px;
+		bottom: -9999px;
 		visibility: hidden;
 		font-size: 0.575rem;
-		margin-top: 1rem;
 	}
 
 	&.selected {
@@ -27,6 +29,9 @@ $background: #E0D7C8;
 		max-height: 14rem;
 
 		.equip-details {
+			position: relative;
+			top: 0;
+			left: 0;
 			visibility: visible;
 			transition: visibility 0s linear 0.20s;
 		}
