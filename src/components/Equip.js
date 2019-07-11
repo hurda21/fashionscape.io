@@ -111,10 +111,7 @@ export default class Equip extends React.Component {
 	}
 
 	selectType = (selectedType) => {
-		if (this.state.selectedType !== selectedType) {
-			if (selectedType === 'weapon') this.getWeapons();
-			else this.getEquipment(selectedType);
-		}
+		if (this.state.selectedType !== selectedType) this.getEquipment(selectedType);
 	};
 
 	selectEquip = (selectedEquip) => {
@@ -139,7 +136,7 @@ export default class Equip extends React.Component {
 			this.setState({
 				loadout: loadout,
 				selectedEquip: selectedEquip
-			}, () => console.log("State set"));
+			});
 		} else {
 			loadout[this.state.selectedType] = {};
 
@@ -157,55 +154,31 @@ export default class Equip extends React.Component {
 		this.setState({ searchInput: e.target.value });
 	}
 
-	// Retrieves all non-weapon equipment
+	// Retrieves all equipment
 	getEquipment(selectedType) {
-		this.http.get('items-json-slot/items-' + selectedType + '.json').then(response => {
-			// 
-			// *** NEEDS TO BE DONE IN THE BACKEND ***
-			//
-			let data = Object.values(response.data).map(equip => {
-				return ({
-					id: equip.id,
-					name: equip.name, 
-					members: equip.members,
-					tradeable: equip.tradeable,
-					weight: equip.weight,
-					equipment: equip.equipment
+		let data = {};
+		if (selectedType !== 'weapon') {
+			this.http.get('items-json-slot/items-' + selectedType + '.json').then(response => {
+				data = Object.values(response.data);
+				this.setState({ 
+					equipment: data,
+					selectedType: selectedType,
+					selectedEquip: this.state.loadout[selectedType]
 				});
 			});
-			this.setState({ 
-				equipment: data,
-				selectedType: selectedType,
-				selectedEquip: this.state.loadout[selectedType]
-			}, () => console.log("State set"));
-		});
-	}
-
-	// Retrieves both one-handed and two-handed weapons when selecting the 'weapon' equipment type
-	getWeapons() {
-		Promise.all([
-			this.http.get('items-json-slot/items-weapon.json'),
-			this.http.get('items-json-slot/items-2h.json')
-		]).then(response => {
-			// 
-			// *** NEEDS TO BE DONE IN THE BACKEND ***
-			//
-			let data = Object.values(response[0].data).concat(Object.values(response[1].data)).map(equip => {
-				return ({
-					id: equip.id,
-					name: equip.name, 
-					members: equip.members,
-					tradeable: equip.tradeable,
-					weight: equip.weight,
-					equipment: equip.equipment
+		} else {
+			Promise.all([
+				this.http.get('items-json-slot/items-weapon.json'),
+				this.http.get('items-json-slot/items-2h.json')
+			]).then(response => {
+				data = Object.values(response[0].data).concat(Object.values(response[1].data));
+				this.setState({ 
+					equipment: data,
+					selectedType: selectedType,
+					selectedEquip: this.state.loadout[selectedType]
 				});
 			});
-			this.setState({ 
-				equipment: data,
-				selectedType: 'weapon',
-				selectedEquip: this.state.loadout['weapon']
-			}, () => console.log("State set"));
-		});
+		}
 	}
 
 	setEquipStats() {
