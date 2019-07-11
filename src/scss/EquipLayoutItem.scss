@@ -22,6 +22,10 @@
 
 	&.selected {
 		outline: 1.5px solid white;
+
+		&:hover {
+			cursor: default;
+		}
 	}
 
 	.layout-img {

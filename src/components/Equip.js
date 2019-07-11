@@ -89,11 +89,10 @@ export default class Equip extends React.Component {
 		if (searchInput.length > 0 && Object.keys(equipment).length > 0) {
 			equipment = {};
 
-			let filteredValues = Object.values(this.state.equipment).filter(equip => {
-				return equip.name.toLowerCase().match(searchInput);
-			});
-			filteredValues.forEach(equip => {
-				equipment[equip.id] = equip;
+			let filteredValues = Object.values(this.state.equipment).forEach(equip => {
+				if (equip.name.toLowerCase().match(searchInput)) {
+					equipment[equip.id] = equip;
+				}
 			});
 		}
 
@@ -124,13 +123,6 @@ export default class Equip extends React.Component {
 		if (this.state.selectedType !== selectedType) {
 			if (selectedType === 'weapon') this.getWeapons();
 			else this.getEquipment(selectedType);
-		} 
-		else {
-			this.setState({
-				equipment: {},
-				selectedType: '',
-				selectedEquip: {}
-			});
 		}
 	};
 

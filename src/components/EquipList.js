@@ -1,5 +1,6 @@
 import React from 'react';
 
+import '../scss/Equip.scss';
 import '../scss/EquipList.scss';
 import '../scss/EquipListItem.scss';
 import EquipListItem from './EquipListItem';
@@ -22,7 +23,7 @@ export default class EquipList extends React.Component {
 		if (Object.keys(this.props.equipment).length === 0) {
 			return (
 				<div className='col-12'>
-					<div className='equip-list-item text-center'>
+					<div className='text-center padded'>
 						<h6 className='small-header'>No equipment found for: "{this.props.searchInput}"</h6>
 					</div>
 				</div>
