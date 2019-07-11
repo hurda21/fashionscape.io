@@ -10,7 +10,7 @@ export default class EquipStats extends React.Component {
 	}
 
 	render() {
-		let stats = this.props.stats;
+		let stats = this.props.totalStats;
 		return (
 			<div className='equip-stats-container'>
 				<div className='row'>
@@ -43,7 +43,7 @@ export default class EquipStats extends React.Component {
 				<div className='row'>
 					<div className='col-12'>
 						<div className='text-center'>
-							Weight: {Math.round(this.props.weight * 100) / 100}kg
+							Weight: {Math.round(this.props.totalWeight * 100) / 100}kg
 						</div>
 					</div>
 				</div>

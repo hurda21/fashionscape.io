@@ -28,7 +28,7 @@ export default class Equip extends React.Component {
 				feet: {},
 				ring: {}
 			},
-			stats: {
+			totalStats: {
 				attack_crush: 0,
 				attack_magic: 0,
 				attack_ranged: 0,
@@ -45,12 +45,12 @@ export default class Equip extends React.Component {
 				magic_damage: 0,
 				prayer: 0
 			},
-			weight: 0,
+			totalWeight: 0,
 
 			selectedEquip: {},
 			selectedType: '',
 
-			equipment: {},
+			equipment: [],
 			searchInput: ''
 			
 		};
@@ -64,8 +64,8 @@ export default class Equip extends React.Component {
 				<div className='row'>
 					<div className='col-lg-5 col-md-6'>
 						<EquipLayout loadout={this.state.loadout} 
-												 stats={this.state.stats}
-												 weight={this.state.weight}
+												 totalStats={this.state.totalStats}
+												 totalWeight={this.state.totalWeight}
 												 selectedType={this.state.selectedType} 
 												 selectType={this.selectType} />
 					</div>
@@ -80,11 +80,11 @@ export default class Equip extends React.Component {
 
 	renderEquipList() {
 		// Filters the equipment list based on search parameters
-		let equipment = Object.values(this.state.equipment);
+		let equipment = this.state.equipment;
 		let searchInput = this.state.searchInput.replace(/\\/g, '').trim().toLowerCase();
 
-		if (searchInput.length > 0) {
-			equipment = equipment.filter(equip => {
+		if (searchInput.length > 0 && equipment.length > 0) {
+			equipment = this.state.equipment.filter(equip => {
 				if (equip && equip.name) return equip.name.toLowerCase().match(searchInput);
 			});
 		}
@@ -92,8 +92,7 @@ export default class Equip extends React.Component {
 		if (this.state.selectedType !== '') {
 			return (
 				<div>
-					<EquipSearch equipment={this.state.equipment} 
-											 searchInput={this.state.searchInput}
+					<EquipSearch searchInput={this.state.searchInput}
 											 setSearchInput={this.setSearchInput} />
 					<EquipList equipment={equipment}
 										 searchInput={this.state.searchInput}
@@ -162,7 +161,7 @@ export default class Equip extends React.Component {
 	getEquipment(selectedType) {
 		this.http.get('items-json-slot/items-' + selectedType + '.json').then(response => {
 			this.setState({ 
-				equipment: response.data,
+				equipment: Object.values(response.data),
 				selectedType: selectedType,
 				selectedEquip: this.state.loadout[selectedType]
 			});
@@ -176,7 +175,7 @@ export default class Equip extends React.Component {
 			this.http.get('items-json-slot/items-weapon.json'),
 			this.http.get('items-json-slot/items-2h.json')
 		]).then(response => {
-			let data = { ...response[0].data, ...response[1].data };
+			let data = Object.values(response[0].data).concat(Object.values(response[1].data));
 			this.setState({ 
 				equipment: data,
 				selectedType: 'weapon',
@@ -192,15 +191,15 @@ export default class Equip extends React.Component {
 		Object.values(this.state.loadout).forEach(equip => {
 			if (equip && equip.weight) weight += equip.weight;
 
-			Object.keys(this.state.stats).forEach(key => {
+			Object.keys(this.state.totalStats).forEach(key => {
 				if (stats[key] === undefined) stats[key] = 0;
 				if (equip && equip.equipment) stats[key] += equip.equipment[key];
 			});
 		});
 
 		this.setState({ 
-			stats: stats, 
-			weight: weight
+			totalStats: stats, 
+			totalWeight: weight
 		});
 	}
 }

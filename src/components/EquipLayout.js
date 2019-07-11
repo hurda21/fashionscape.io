@@ -32,8 +32,8 @@ export default class EquipLayout extends React.Component {
 
 					{this.renderEquipSlots()}
 				</div>
-				<EquipStats stats={this.props.stats}
-										weight={this.props.weight} />
+				<EquipStats totalStats={this.props.totalStats}
+										totalWeight={this.props.totalWeight} />
 				<hr className='underlined d-block d-md-none d-lg-none d-xl-none' />
 			</div>
 		);
