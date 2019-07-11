@@ -4,7 +4,6 @@ import '../scss/Equip.scss';
 
 import EquipLayout from './EquipLayout';
 import EquipModel from './EquipModel';
-import EquipStats from './EquipStats';
 import EquipSearch from './EquipSearch';
 import EquipList from './EquipList';
 
@@ -63,20 +62,18 @@ export default class Equip extends React.Component {
 		return (
 			<div className='container equip-card'>
 				<div className='row'>
-					<div className='col-lg-5 col-md-8'>
+					<div className='col-lg-5 col-md-6'>
 						<EquipLayout loadout={this.state.loadout} 
+												 stats={this.state.stats}
+												 weight={this.state.weight}
 												 selectedType={this.state.selectedType} 
 												 selectType={this.selectType} />
 					</div>
-					<div className='col-lg-4 d-none d-lg-block d-xl-block'>
-						<EquipModel />
-					</div>
-					<div className='col-lg-3 col-md-4'>
-						<EquipStats stats={this.state.stats}
-												weight={this.state.weight} />
+					<div className='col-lg-7 col-md-6'>
+						{this.renderEquipList()}
 					</div>
 				</div>
-				{this.renderEquipList()}
+				
 			</div>
 		);
 	}
@@ -99,7 +96,6 @@ export default class Equip extends React.Component {
 		if (this.state.selectedType !== '') {
 			return (
 				<div>
-					<hr className='underlined' />
 					<EquipSearch equipment={this.state.equipment} 
 											 searchInput={this.state.searchInput}
 											 setSearchInput={this.setSearchInput} />
@@ -208,7 +204,7 @@ export default class Equip extends React.Component {
 
 		this.setState({ 
 			stats: stats, 
-			weight: weight 
+			weight: weight
 		});
 	}
 }

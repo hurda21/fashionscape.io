@@ -2,6 +2,7 @@ import React from 'react';
 
 import '../scss/EquipLayout.scss';
 import EquipLayoutItem from './EquipLayoutItem';
+import EquipStats from './EquipStats';
 
 export default class EquipLayout extends React.Component {
 
@@ -15,20 +16,25 @@ export default class EquipLayout extends React.Component {
 		let horizontalImage = { backgroundImage: 'url(./images/horizontal-connector.png' };
 
 		return (
-			<div className='osrs-background' 
-					 style={borderImage}>
-				<span className='osrs-connector vertical left' 
-							style={verticalImage}></span>
-				<span className='osrs-connector vertical middle' 
-							style={verticalImage}></span>
-				<span className='osrs-connector vertical right' 
-							style={verticalImage}></span>
-				<span className='osrs-connector horizontal top' 
-							style={horizontalImage}></span>
-				<span className='osrs-connector horizontal bottom' 
-							style={horizontalImage}></span>
+			<div className='layout-container'>
+				<div className='osrs-background' 
+						 style={borderImage}>
+					<span className='osrs-connector vertical left' 
+								style={verticalImage}></span>
+					<span className='osrs-connector vertical middle' 
+								style={verticalImage}></span>
+					<span className='osrs-connector vertical right' 
+								style={verticalImage}></span>
+					<span className='osrs-connector horizontal top' 
+								style={horizontalImage}></span>
+					<span className='osrs-connector horizontal bottom' 
+								style={horizontalImage}></span>
 
-				{this.renderEquipSlots()}
+					{this.renderEquipSlots()}
+				</div>
+				<EquipStats stats={this.props.stats}
+										weight={this.props.weight} />
+				<hr className='underlined d-block d-md-none d-lg-none d-xl-none' />
 			</div>
 		);
 	}

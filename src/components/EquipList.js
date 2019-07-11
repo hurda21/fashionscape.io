@@ -32,7 +32,7 @@ export default class EquipList extends React.Component {
 
 		let equipListItems = Object.values(this.props.equipment).map(value => {
 			return (
-				<div className='col-lg-4 col-md-6' key={value.id}>
+				<div className='col-lg-6' key={value.id}>
 					<EquipListItem equip={value}
 												 selectedEquip={this.props.selectedEquip}
 												 selectEquip={this.props.selectEquip} />

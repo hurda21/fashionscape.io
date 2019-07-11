@@ -11,7 +11,7 @@ export default class EquipSearch extends React.Component {
 	render() {
 		return (
 			<div className='row'>
-				<div className='offset-lg-4 col-lg-4 offset-md-3 col-md-6 offset-sm-2 col-sm-8'>
+				<div className='offset-xl-3 col-xl-6 offset-lg-2 col-lg-8 offset-sm-1 col-sm-10'>
 					<input className='form-control equip-search'
 								 type='text'
 								 value={this.props.searchInput}

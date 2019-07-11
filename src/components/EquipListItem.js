@@ -25,7 +25,7 @@ export default class EquipListItem extends React.Component {
 					<hr/>
 					<div className='row'>
 						<div className='col-4'>
-							<h6 className='tiny-header'>Attack</h6>
+							<h6 className='tiny-header'>Attack:</h6>
 							<div>Stab: {this.renderBonus(equip.equipment.attack_stab)}</div>
 							<div>Slash: {this.renderBonus(equip.equipment.attack_slash)}</div>
 							<div>Crush: {this.renderBonus(equip.equipment.attack_crush)}</div>
@@ -33,7 +33,7 @@ export default class EquipListItem extends React.Component {
 							<div>Range: {this.renderBonus(equip.equipment.attack_ranged)}</div>
 						</div>
 						<div className='col-4'>
-							<h6 className='tiny-header'>Defence</h6>
+							<h6 className='tiny-header'>Defence:</h6>
 							<div>Stab: {this.renderBonus(equip.equipment.defence_stab)}</div>
 							<div>Slash: {this.renderBonus(equip.equipment.defence_slash)}</div>
 							<div>Crush: {this.renderBonus(equip.equipment.defence_crush)}</div>
@@ -41,12 +41,11 @@ export default class EquipListItem extends React.Component {
 							<div>Range: {this.renderBonus(equip.equipment.defence_ranged)}</div>
 						</div>
 						<div className='col-4'>
-							<h6 className='tiny-header'>Other</h6>
-							<div>Melee str: {this.renderBonus(equip.equipment.melee_strength)}</div>
-							<div>Ranged str: {this.renderBonus(equip.equipment.ranged_strength)}</div>
-							<div>Magic dmg: {this.renderBonus(equip.equipment.magic_damage)}%</div>
+							<h6 className='tiny-header'>Other:</h6>
+							<div>Melee: {this.renderBonus(equip.equipment.melee_strength)}</div>
+							<div>Ranged: {this.renderBonus(equip.equipment.ranged_strength)}</div>
+							<div>Magic: {this.renderBonus(equip.equipment.magic_damage)}%</div>
 							<div>Prayer: {this.renderBonus(equip.equipment.prayer)}</div>
-							<div>Weight: {Math.round(equip.weight * 100) / 100}kg</div>
 						</div>
 					</div>
 				</div>
