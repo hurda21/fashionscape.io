@@ -19,7 +19,7 @@ export default class EquipSearch extends React.Component {
 												 value={this.props.searchInput}
 												 placeholder='Search'
 												 aria-label='Search'
-												 debounceTimeout={400}
+												 debounceTimeout={50}
 												 onChange={this.props.setSearchInput} />
 				</div>
 			</div>

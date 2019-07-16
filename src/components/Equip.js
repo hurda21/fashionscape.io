@@ -7,6 +7,8 @@ import EquipModel from './EquipModel';
 import EquipSearch from './EquipSearch';
 import EquipList from './EquipList';
 
+import { forceCheck } from 'react-lazyload';
+
 import axios from 'axios';
 const API_URL = 'https://www.osrsbox.com/osrsbox-db/';
 
@@ -82,7 +84,6 @@ export default class Equip extends React.Component {
 						{this.renderEquipList()}
 					</div>
 				</div>
-				
 			</div>
 		);
 	}
@@ -112,6 +113,7 @@ export default class Equip extends React.Component {
 		}
 	}
 
+	// Creates the http connection to the external API
 	componentDidMount() {
 		this.http = axios.create({
 		  baseURL: API_URL,
@@ -159,8 +161,10 @@ export default class Equip extends React.Component {
 		this.setEquipStats();
 	};
 
+	// Sets the search string on input change, then renders the lazy loaded components
+	// (new search results outside the original offset range otherwise do not get rendered)
 	setSearchInput = (e) => {
-		this.setState({ searchInput: e.target.value });
+		this.setState({ searchInput: e.target.value }, () => forceCheck());
 	}
 
 	// Retrieves all equipment through the osrsbox API
@@ -191,7 +195,7 @@ export default class Equip extends React.Component {
 			});
 		}
 	}
-
+	
 	setEquipStats() {
 		let stats = {};
 		let weight = 0;

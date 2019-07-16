@@ -22,11 +22,12 @@ export default class EquipListItem extends React.Component {
 			display: 'inline-block',
 			width: '36px'
 		}
+
 		return (
 			<div className={className} 
 					 onClick={() => this.props.selectEquip(equip)}>
 				<div style={lazyLoadStyle}>
-					<LazyLoad height={32} offset={1000} once={true}>
+					<LazyLoad height={0} offset={1000} once>
 						<img src={API_URL + 'items-icons/' + equip.id + '.png'} />
 					</LazyLoad>
 				</div>
