@@ -1,5 +1,7 @@
 import React from 'react';
 
+import LazyLoad from 'react-lazyload';
+
 import '../scss/Equip.scss';
 import '../scss/EquipList.scss';
 import '../scss/EquipListItem.scss';
@@ -33,9 +35,11 @@ export default class EquipList extends React.Component {
 		let equipListItems = this.props.equipment.map(value => {
 			return (
 				<div className='col-lg-6' key={value.id}>
-					<EquipListItem equip={value}
-												 selectedEquip={this.props.selectedEquip}
-												 selectEquip={this.props.selectEquip} />
+					<LazyLoad height={75} offset={2000} once={true} overflow={true}>
+						<EquipListItem equip={value}
+													 selectedEquip={this.props.selectedEquip}
+													 selectEquip={this.props.selectEquip} />
+					</LazyLoad>
 				</div>
 			);
 		});

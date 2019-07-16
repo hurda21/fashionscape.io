@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import 'react-lazy-load-image-component/src/effects/opacity.css';
+import LazyLoad from 'react-lazyload';
 
 import '../scss/Equip.scss';
 import '../scss/EquipListItem.scss';
@@ -19,13 +18,18 @@ export default class EquipListItem extends React.Component {
 		let className = 'equip-list-item';
 		if (this.props.selectedEquip.id === equip.id) className += ' selected';
 		
+		let lazyLoadStyle = {
+			display: 'inline-block',
+			width: '36px'
+		}
 		return (
 			<div className={className} 
 					 onClick={() => this.props.selectEquip(equip)}>
-				<LazyLoadImage alt={equip.id}
-											 effect='opacity'
-											 width='36px'
-											 src={API_URL + 'items-icons/' + equip.id + '.png'} />
+				<div style={lazyLoadStyle}>
+					<LazyLoad height={32} offset={1000} once={true}>
+						<img src={API_URL + 'items-icons/' + equip.id + '.png'} />
+					</LazyLoad>
+				</div>
 				<span className='margin-left'>{this.props.equip.name}</span>
 				<div className='equip-details'>
 					<hr/>

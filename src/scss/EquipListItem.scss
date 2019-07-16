@@ -26,7 +26,7 @@ $background: #E0D7C8;
 	&.selected {
 		background-color: darken($background, 10%);
 		border: 1px solid #615536;
-		max-height: 200px;
+		max-height: 250px;
 
 		.equip-details {
 			visibility: visible;
