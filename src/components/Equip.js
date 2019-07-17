@@ -3,7 +3,7 @@ import React from 'react';
 import '../scss/Equip.scss';
 
 import EquipLayout from './EquipLayout';
-import EquipModel from './EquipModel';
+import EquipCanvas from './EquipCanvas';
 import EquipSearch from './EquipSearch';
 import EquipList from './EquipList';
 
@@ -82,6 +82,11 @@ export default class Equip extends React.Component {
 					</div>
 					<div className='col-lg-7 col-md-6'>
 						{this.renderEquipList()}
+					</div>
+				</div>
+				<div className='row'>
+					<div className='col-12'>
+						<EquipCanvas />
 					</div>
 				</div>
 			</div>
@@ -195,7 +200,7 @@ export default class Equip extends React.Component {
 			});
 		}
 	}
-	
+
 	setEquipStats() {
 		let stats = {};
 		let weight = 0;

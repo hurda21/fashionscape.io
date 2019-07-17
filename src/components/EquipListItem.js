@@ -27,7 +27,7 @@ export default class EquipListItem extends React.Component {
 			<div className={className} 
 					 onClick={() => this.props.selectEquip(equip)}>
 				<div style={lazyLoadStyle}>
-					<LazyLoad height={0} offset={1000} once>
+					<LazyLoad height={32} offset={1000} once>
 						<img src={API_URL + 'items-icons/' + equip.id + '.png'} />
 					</LazyLoad>
 				</div>
