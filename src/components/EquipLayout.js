@@ -16,24 +16,26 @@ export default class EquipLayout extends React.Component {
 		let horizontalImage = { backgroundImage: 'url(./images/horizontal-connector.png' };
 
 		return (
-			<div className='layout-container'>
-				<div className='osrs-background' 
-						 style={borderImage}>
-					<span className='osrs-connector vertical left' 
-								style={verticalImage}></span>
-					<span className='osrs-connector vertical middle' 
-								style={verticalImage}></span>
-					<span className='osrs-connector vertical right' 
-								style={verticalImage}></span>
-					<span className='osrs-connector horizontal top' 
-								style={horizontalImage}></span>
-					<span className='osrs-connector horizontal bottom' 
-								style={horizontalImage}></span>
+			<div>
+				<div className='layout-container'>
+					<div className='osrs-background' 
+							 style={borderImage}>
+						<span className='osrs-connector vertical left' 
+									style={verticalImage}></span>
+						<span className='osrs-connector vertical middle' 
+									style={verticalImage}></span>
+						<span className='osrs-connector vertical right' 
+									style={verticalImage}></span>
+						<span className='osrs-connector horizontal top' 
+									style={horizontalImage}></span>
+						<span className='osrs-connector horizontal bottom' 
+									style={horizontalImage}></span>
 
-					{this.renderEquipSlots()}
+						{this.renderEquipSlots()}
+					</div>
+					<EquipStats totalStats={this.props.totalStats}
+											totalWeight={this.props.totalWeight} />
 				</div>
-				<EquipStats totalStats={this.props.totalStats}
-										totalWeight={this.props.totalWeight} />
 				<hr className='underlined d-block d-md-none d-lg-none d-xl-none' />
 			</div>
 		);
