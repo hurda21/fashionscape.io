@@ -32,6 +32,9 @@ export default class Equip extends React.Component {
 				ring: {}
 			},
 
+			// Player's equipment model ids
+			models: {},
+
 			// Total stats of the player's loadout
 			totalStats: {
 				attack_crush: 0,
@@ -86,7 +89,7 @@ export default class Equip extends React.Component {
 				</div>
 				<div className='row'>
 					<div className='col-12'>
-						<EquipCanvas />
+						<EquipCanvas models={this.state.models} />
 					</div>
 				</div>
 			</div>
@@ -152,6 +155,9 @@ export default class Equip extends React.Component {
 			this.setState({
 				loadout: loadout,
 				selectedEquip: selectedEquip
+			}, () => {
+				this.setEquipStats();
+				this.getModel(this.state.selectedEquip);
 			});
 		} else {
 			loadout[this.state.selectedType] = {};
@@ -159,11 +165,11 @@ export default class Equip extends React.Component {
 			this.setState({
 				loadout: loadout,
 				selectedEquip: {}
+			}, () => {
+				this.setEquipStats();
+				this.getModel(this.state.selectedEquip);
 			});
 		}
-
-		// Sets the equipment stats after equipping an item
-		this.setEquipStats();
 	};
 
 	// Sets the search string on input change, then renders the lazy loaded components
@@ -197,6 +203,21 @@ export default class Equip extends React.Component {
 					selectedEquip: this.state.loadout[selectedType],
 					searchInput: ''
 				});
+			});
+		}
+	}
+
+	// Retrieves the model ID for the selected equipment
+	getModel(selectedEquip) {
+		let id = selectedEquip.id;
+		if (id !== undefined) {
+			this.http.get('models-summary.json').then(response => {
+				let modelInfo = Object.values(response.data).find(value => id === value.type_id);
+				let models = this.state.models;
+				if (modelInfo) {
+					models[this.state.selectedType] = modelInfo.model_id;
+					this.setState({ models: models });
+				}
 			});
 		}
 	}
