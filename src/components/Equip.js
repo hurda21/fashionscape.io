@@ -210,15 +210,18 @@ export default class Equip extends React.Component {
 	// Retrieves the model ID for the selected equipment
 	getModel(selectedEquip) {
 		let id = selectedEquip.id;
+		let models = this.state.models;
 		if (id !== undefined) {
 			this.http.get('models-summary.json').then(response => {
 				let modelInfo = Object.values(response.data).find(value => id === value.type_id);
-				let models = this.state.models;
 				if (modelInfo) {
 					models[this.state.selectedType] = modelInfo.model_id;
 					this.setState({ models: models });
 				}
 			});
+		} else {
+			models[this.state.selectedType] = -1;
+			this.setState({ models: models });
 		}
 	}
 

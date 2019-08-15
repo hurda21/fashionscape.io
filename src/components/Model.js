@@ -9,15 +9,21 @@ function Model({ id }) {
   const [obj, setState] = useState();
 
   useMemo(() => {
-  	new MTLLoader().load(src + '.mtl', materials => {
-  		materials.preload();
+  	if (id !== -1) {
+	  	new MTLLoader().load(src + '.mtl', materials => {
+	  		materials.preload();
 
-  		let objLoader = new OBJLoader();
-  		objLoader.setMaterials(materials);
-  		objLoader.load(src + '.obj', setState);
-  	});
+	  		let objLoader = new OBJLoader();
+	  		objLoader.setMaterials(materials);
+	  		objLoader.load(src + '.obj', setState);
+	  	});
+	  }
   }, [id]);
-  
-  return obj ? <primitive object={obj} /> : null;
+
+  if (id === -1) {
+  	return null;
+  }
+
+  return obj ? <primitive object={obj} rotation-x={Math.PI / 2} /> : null;
 }
 export default Model
