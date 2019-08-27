@@ -23,12 +23,12 @@ export default class EquipLayoutItem extends React.Component {
 			<div className={className} 
 					 style={equipImage} 
 					 onClick={() => this.props.selectType(this.props.type)}>
-				{this.showItem()}
+				{this.renderItem()}
 			</div>
 		);
 	}
 
-	showItem() {
+	renderItem() {
 		if (Object.keys(this.props.equip).length > 0) {
 			return (
 				<div className='tooltip-container'>
