@@ -76,20 +76,18 @@ export default class Equip extends React.Component {
 		return (
 			<div className='container equip-card'>
 				<div className='row'>
-					<div className='col-lg-5 col-md-6'>
+					<div className='col-lg-4 col-md-6'>
 						<EquipLayout loadout={this.state.loadout} 
 												 totalStats={this.state.totalStats}
 												 totalWeight={this.state.totalWeight}
 												 selectedType={this.state.selectedType} 
 												 selectType={this.selectType} />
 					</div>
-					<div className='col-lg-7 col-md-6'>
-						{this.renderEquipList()}
-					</div>
-				</div>
-				<div className='row'>
-					<div className='col-12'>
+					<div className='col-lg-4 col-md-6'>
 						<EquipCanvas models={this.state.models} />
+					</div>
+					<div className='col-lg-4 col-md-12'>
+						{this.renderEquipList()}
 					</div>
 				</div>
 			</div>

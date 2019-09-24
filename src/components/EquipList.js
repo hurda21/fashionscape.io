@@ -37,7 +37,7 @@ export default class EquipList extends React.Component {
 
 		let equipListItems = this.props.equipment.map(value => {
 			return (
-				<div className='col-lg-6' key={value.id}>
+				<div className='col-lg-12 col-sm-6' key={value.id}>
 					<LazyLoad height={75} offset={1000} once overflow resize>
 						<EquipListItem equip={value}
 													 selectedEquip={this.props.selectedEquip}

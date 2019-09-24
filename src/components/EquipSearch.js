@@ -13,7 +13,7 @@ export default class EquipSearch extends React.Component {
 	render() {
 		return (
 			<div className='row'>
-				<div className='offset-xl-3 col-xl-6 offset-lg-2 col-lg-8 offset-sm-1 col-sm-10'>
+				<div className='offset-lg-1 col-lg-10 offset-2 col-8'>
 					<DebounceInput className='form-control equip-search'
 												 type='search'
 												 value={this.props.searchInput}
