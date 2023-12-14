@@ -5,11 +5,7 @@ import EquipLayoutItem from './EquipLayoutItem';
 import EquipStats from './EquipStats';
 
 export default class EquipLayout extends React.Component {
-
-	constructor(props) {
-		super(props);
-	}
-
+	
 	render() {
 		let borderImage = { borderImage: 'url(./images/osrs-border.png) 30 round' };
 		let verticalImage = { backgroundImage: 'url(./images/vertical-connector.png' };

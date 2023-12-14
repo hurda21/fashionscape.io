@@ -5,10 +5,6 @@ import '../scss/EquipSearch.scss';
 import { DebounceInput } from 'react-debounce-input';
 
 export default class EquipSearch extends React.Component {
-	
-	constructor(props) {
-		super(props);
-	}
 
 	render() {
 		return (

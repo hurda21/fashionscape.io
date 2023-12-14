@@ -3,13 +3,7 @@ import React from 'react';
 import '../scss/EquipLayoutItem.scss';
 import '../scss/Tooltip.scss';
 
-const API_URL = 'https://www.osrsbox.com/osrsbox-db/';
-
 export default class EquipLayoutItem extends React.Component {
-
-	constructor(props) {
-		super(props);
-	}
 
 	render() {
 		let backgroundUrl = 'url(./images/' + this.props.type + '.png)';
@@ -32,10 +26,14 @@ export default class EquipLayoutItem extends React.Component {
 		if (Object.keys(this.props.equip).length > 0) {
 			return (
 				<div className='tooltip-container'>
-					<img className='layout-img' src={API_URL + 'items-icons/' + this.props.equip.id + '.png'} />
+					<img className='layout-img' src={this.renderIcon(this.props.equip)} alt='' />
 					<span className='tooltip-text'>{this.props.equip.name}</span>
 				</div>
 			);
 		}
+	}
+
+	renderIcon(equip) {
+		return `data:image/png;base64,${equip.icon}`;
 	}
 }

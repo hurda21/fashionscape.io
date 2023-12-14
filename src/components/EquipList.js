@@ -8,11 +8,7 @@ import '../scss/EquipListItem.scss';
 import EquipListItem from './EquipListItem';
 
 export default class EquipList extends React.Component {
-
-	constructor(props) {
-		super(props);
-	}
-
+	
 	render() {
 		return (
 			<div>

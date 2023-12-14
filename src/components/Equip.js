@@ -10,7 +10,7 @@ import EquipList from './EquipList';
 import { forceCheck } from 'react-lazyload';
 
 import axios from 'axios';
-const API_URL = 'https://www.osrsbox.com/osrsbox-db/';
+const API_URL = 'https://raw.githubusercontent.com/0xNeffarion/osrsreboxed-db/master/docs/';
 
 export default class Equip extends React.Component {
 
@@ -47,7 +47,6 @@ export default class Equip extends React.Component {
 				defence_ranged: 0,
 				defence_slash: 0,
 				defence_stab: 0,
-				magic_damage: 0,
 				melee_strength: 0,
 				ranged_strength: 0,
 				magic_damage: 0,
@@ -101,7 +100,7 @@ export default class Equip extends React.Component {
 
 		if (searchInput.length > 0 && equipment.length > 0) {
 			equipment = this.state.equipment.filter(equip => {
-				if (equip && equip.name) return equip.name.toLowerCase().match(searchInput);
+				return equip.name?.toLowerCase().match(searchInput);
 			});
 		}
 

@@ -5,10 +5,6 @@ import '../scss/EquipStats.scss';
 
 export default class EquipStats extends React.Component {
 
-	constructor(props) {
-		super(props);
-	}
-
 	render() {
 		let stats = this.props.totalStats;
 		return (

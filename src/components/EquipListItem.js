@@ -5,13 +5,7 @@ import LazyLoad from 'react-lazyload';
 import '../scss/Equip.scss';
 import '../scss/EquipListItem.scss';
 
-const API_URL = 'https://www.osrsbox.com/osrsbox-db/';
-
 export default class EquipListItem extends React.Component {
-
-	constructor(props) {
-		super(props);
-	}
 
 	render() {
 		let equip = this.props.equip;
@@ -28,7 +22,7 @@ export default class EquipListItem extends React.Component {
 					 onClick={() => this.props.selectEquip(equip)}>
 				<div style={lazyLoadStyle}>
 					<LazyLoad height={32} offset={1000} once>
-						<img src={API_URL + 'items-icons/' + equip.id + '.png'} />
+						<img src={this.renderIcon(equip)} alt='' />
 					</LazyLoad>
 				</div>
 				<span className='margin-left'>{this.props.equip.name}</span>
@@ -65,10 +59,11 @@ export default class EquipListItem extends React.Component {
 	}
 
 	renderBonus(equipStat) {
-		if (equipStat >= 0) {
-			return "+" + equipStat;
-		} else {
-			return equipStat;
-		}
+		if (equipStat >= 0) return "+" + equipStat;
+		else return equipStat;
+	}
+
+	renderIcon(equip) {
+		return `data:image/png;base64,${equip.icon}`;
 	}
 }

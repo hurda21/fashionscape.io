@@ -1,13 +1,9 @@
 import React from 'react';
-import { Canvas } from 'react-three-fiber';
+import { Canvas } from '@react-three/fiber';
 
 import Model from './Model';
 
 export default class EquipCanvas extends React.Component {
-
-	constructor(props) {
-		super(props);
-	}
 
 	render() {
 		return (
